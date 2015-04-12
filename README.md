@@ -27,6 +27,7 @@ There are a number of steps you need to complete in order to run this VM on an A
 
 ###Create vagrantconfig.yaml file###
 In the same folder as your Vagrantfile, create a file called vagrantconfig.yaml.  That file should look like:
+
     subscription_id: your_azure_subscription_ID
 	password: password_for_the_VMs_vagrant_account
 
@@ -34,9 +35,9 @@ In the same folder as your Vagrantfile, create a file called vagrantconfig.yaml.
     vagrant up --provider=azure
 	
 ###Open UDP Endpoints###
-It looks like vagrant-azure plugin doesn't let you set UDP endpoints yet.  So log into Azure and add the UDP endpoint for port 5005 to the VM you created
+It looks like the vagrant-azure plugin doesn't let you set UDP endpoints yet.  So log into Azure and add the UDP endpoint for port 5005 to the VM you created
 	
 ###Access Web Portal###
-    http://<<cloud_service_name>>.cloudapp.net/kibana
+    http://sensehcmc.cloudapp.net/kibana
 
 
