@@ -53,7 +53,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      override.vm.synced_folder ".", "/vagrant", disabled: true
      azure.mgmt_certificate = "az_cert.pem"
 	 azure.mgmt_endpoint = "https://management.core.windows.net"
- 	 azure.subscription_id = CONF['subscription_id']}
+ 	 azure.subscription_id = CONF['subscription_id']
 	 azure.vm_image = "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-12_04_5-LTS-amd64-server-20150204-en-us-30GB"
 	 azure.vm_user = "vagrant"
 	 azure.vm_password = CONF['password']
