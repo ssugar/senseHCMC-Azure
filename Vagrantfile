@@ -22,29 +22,51 @@ apt-get install git -y
 apt-get install nginx -y
 apt-get install openjdk-7-jdk -y
 cd /home/vagrant
+
+#Get and Install Elasticsearch
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/localELK/elasticsearch-1.4.2.deb > elasticsearch-1.4.2.deb
 dpkg -i elasticsearch-1.4.2.deb
 update-rc.d elasticsearch defaults 95 10
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/cookbooks/ss_kibana/files/default/elasticsearch.yml > elasticsearch.yml
 cp /home/vagrant/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 service elasticsearch start
+
+#Get and Install Logstash
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/localELK/logstash-1.4.2-1.deb > logstash-1.4.2-1.deb
 dpkg -i logstash-1.4.2-1.deb
 service logstash restart
+
+#Get and Install Kibana
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/localELK/kibana-latest.tar.gz > kibana-latest.tar.gz
 tar -xvzf kibana-latest.tar.gz
 cp -R kibana-latest /usr/share/nginx/www/kibana
+
+#Configure Logstash
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/cookbooks/ss_logstash/files/default/logstash.conf > logstash.conf
 cp /home/vagrant/logstash.conf /etc/logstash/conf.d/logstash.conf
+
+#Install Sensor Dashboard to Kibana
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/cookbooks/ss_kibana/files/default/senseHCMCDashboard.json > senseHCMCDashboard.json
 cp /home/vagrant/senseHCMCDashboard.json /usr/share/nginx/www/kibana/app/dashboards/default.json
+
+#Restart Services
 service nginx restart
 service logstash restart
+
+#Update ElasticSearch Mappings
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/updatedEsMappings.sh > updatedEsMappings.sh
 sh updatedEsMappings.sh
+
+#Configure nginx as a proxy so elasticsearch doesnt need to be public
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-Azure/master/nginx.conf > nginx.conf
 cp /home/vagrant/nginx.conf /etc/nginx/sites-available/default
+
+#Update Kibana configuration to point to elasticsearch proxy on port 80
+curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-Azure/master/kibana_config.js > kibana_config.js
+cp /home/vagrant/kibana_config.js /usr/share/nginx/www/kibana/config.js
 service nginx restart
+
+#Download testing script
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/testing/sendData.py > sendData.py
 SCRIPT
 
