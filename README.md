@@ -35,7 +35,11 @@ In the same folder as your Vagrantfile, create a file called vagrantconfig.yaml.
     vagrant up --provider=azure
 	
 ###Open UDP Endpoints###
-It looks like the vagrant-azure plugin doesn't let you set UDP endpoints yet.  So log into Azure and add the UDP endpoint for port 5005 to the VM you created
+It looks like the vagrant-azure plugin doesn't let you set UDP endpoints yet.  So log into Azure and add the UDP endpoint for port 5005 to the VM you created or using Azure Powershell:
+
+     $vm = Get-AzureVM -ServiceName sensehcmc -Name sensehcmc
+     $vm | Add-AzureEndpoint -Name “sensehcmc” -Protocol udp -LocalPort 5005 -PublicPort 5005
+     $vm | Update-AzureVM
 	
 ###Access Web Portal###
     http://sensehcmc.cloudapp.net/kibana
