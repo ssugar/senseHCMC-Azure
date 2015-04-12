@@ -35,7 +35,7 @@ In the same folder as your Vagrantfile, create a file called vagrantconfig.yaml.
     vagrant up --provider=azure
 	
 ###Open UDP Endpoints###
-It looks like the vagrant-azure plugin doesn't let you set UDP endpoints yet.  So log into Azure and add the UDP endpoint for port 5005 to the VM you created or using Azure Powershell:
+It looks like the vagrant-azure plugin doesn't let you set UDP endpoints yet.  So log into Azure and add the UDP endpoint for port 5005 to the VM you created.  Or using Azure Powershell:
 
      $vm = Get-AzureVM -ServiceName sensehcmc -Name sensehcmc
      $vm | Add-AzureEndpoint -Name “sensehcmc” -Protocol udp -LocalPort 5005 -PublicPort 5005
@@ -44,4 +44,6 @@ It looks like the vagrant-azure plugin doesn't let you set UDP endpoints yet.  S
 ###Access Web Portal###
     http://sensehcmc.cloudapp.net/kibana
 
+###Send Test Data###
+    Download the sendData.py file in the root of this project and run it from any machine that has python.  It will resolve sensehcmc.cloudapp.net and then send it a JSON formatted UDP packet to port 5005 with 6 random sensor readings.
 
