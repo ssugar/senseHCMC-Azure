@@ -17,7 +17,7 @@ There are a number of steps you need to complete in order to run this VM on an A
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout az_cert.pem -out az_cert.pem
     openssl x509 -inform pem -in az_cert.pem -outform der -out az_cert.cer
 
-Upload the resultant az_cert.cer file to Azure --> Manage Subcription --> Management Certificate --> Upload or using Powershell:
+Upload the resultant az_cert.cer file to Azure --> Manage Subcription --> Management Certificate --> Upload or using Azure Powershell:
 
     $myCert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2("C:\path_to\az_cert.cer")
     Set-AzureSubscription -SubscriptionName "SubscriptionName" -SubscriptionId "SubscriptionId" -Certificate $myCert
