@@ -42,6 +42,9 @@ service nginx restart
 service logstash restart
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/updatedEsMappings.sh > updatedEsMappings.sh
 sh updatedEsMappings.sh
+curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-Azure/master/nginx.conf > nginx.conf
+cp /home/vagrant/nginx.conf /etc/nginx/sites-enabled/default
+service nginx restart
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/testing/sendData.py > sendData.py
 SCRIPT
 
@@ -63,7 +66,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	 azure.private_key_file = "vm_cert.key"
 	 azure.certificate_file = "vm_cert.pem"
 	 azure.ssh_port = "22"
-	 azure.tcp_endpoints = "80, 9200"
+	 azure.tcp_endpoints = "80"
    end
 
    config.ssh.username = "vagrant"
