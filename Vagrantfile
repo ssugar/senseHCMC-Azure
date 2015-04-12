@@ -43,7 +43,7 @@ service logstash restart
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/updatedEsMappings.sh > updatedEsMappings.sh
 sh updatedEsMappings.sh
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-Azure/master/nginx.conf > nginx.conf
-cp /home/vagrant/nginx.conf /etc/nginx/sites-enabled/default
+cp /home/vagrant/nginx.conf /etc/nginx/sites-available/default
 service nginx restart
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/testing/sendData.py > sendData.py
 SCRIPT
