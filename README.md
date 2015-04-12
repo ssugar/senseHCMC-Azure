@@ -13,7 +13,7 @@ There are a number of steps you need to complete in order to run this VM on an A
 ###Install openssl###
     chocolatey install openssl.light -y
     
-###Set up Azure Management Certificate###
+###Set up and Upload Azure Management Certificate###
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout az_cert.pem -out az_cert.pem
     openssl x509 -inform pem -in az_cert.pem -outform der -out az_cert.cer
 
