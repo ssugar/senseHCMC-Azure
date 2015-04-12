@@ -45,5 +45,5 @@ It looks like the vagrant-azure plugin doesn't let you set UDP endpoints yet.  S
     http://sensehcmc.cloudapp.net/kibana
 
 ###Send Test Data###
-Download the sendData.py file in the root of this project and run it from any machine that has python.  It will resolve sensehcmc.cloudapp.net and then send it a JSON formatted UDP packet to port 5005 with 6 random sensor readings.
+Download the sendData.py file in the root of this project and run it from any machine that has python.  It will resolve sensehcmc.cloudapp.net and then send it a JSON formatted string inside a UDP packet to port 5005 containing 6 random sensor readings.
 
