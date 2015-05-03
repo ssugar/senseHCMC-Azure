@@ -68,6 +68,7 @@ service nginx restart
 
 #Download testing script
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/testing/sendData.py > sendData.py
+curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/testing/sendDataTCP.py > sendDataTCP.py
 SCRIPT
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -88,7 +89,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	 azure.private_key_file = "vm_cert.key"
 	 azure.certificate_file = "vm_cert.pem"
 	 azure.ssh_port = "22"
-	 azure.tcp_endpoints = "80"
+	 azure.tcp_endpoints = "80, 5005"
    end
 
    config.ssh.username = "vagrant"
