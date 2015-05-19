@@ -42,7 +42,7 @@ tar -xvzf kibana-latest.tar.gz
 cp -R kibana-latest /usr/share/nginx/www/kibana
 
 #Configure Logstash
-curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/cookbooks/ss_logstash/files/default/logstash.conf > logstash.conf
+curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-Azure/master/logstash.conf > logstash.conf
 cp /home/vagrant/logstash.conf /etc/logstash/conf.d/logstash.conf
 
 #Install Sensor Dashboard to Kibana
