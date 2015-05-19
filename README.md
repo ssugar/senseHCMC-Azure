@@ -32,7 +32,8 @@ In the same folder as your Vagrantfile, create a file called vagrantconfig.yaml.
 	password: password_for_the_VMs_vagrant_account
 	
 ###Setup Azure SQL to Receive Data###
-**NOTE**:Logstash will not work unless you set up Azure SQL and /etc/logstash/conf.d/logstash.conf, or remove the jdbc section from the outputs of /etc/logstash/conf.d/logstash.conf
+**NOTE**: Logstash will not work unless you set up Azure SQL and /etc/logstash/conf.d/logstash.conf, or remove the jdbc section from the outputs of /etc/logstash/conf.d/logstash.conf
+
 Follow along with the gist [here](https://gist.github.com/ssugar/4162eaa1d638ec62051c) in order to create the required SQL table, download and import the required jdbc jar driver, and complete the setup of /etc/logstash/conf.d/logstash.conf
 
 ###Bring VM up###
