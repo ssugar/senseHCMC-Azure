@@ -21,11 +21,12 @@ UDP_PORT = 5005
 
 MESSAGE = """{"Sensor1":""" + dataPoint1 + """, "Sensor2":""" + dataPoint2 + """, "Sensor3":""" + dataPoint3 + """, "Sensor4":""" + dataPoint4 + """, "Sensor5":""" + dataPoint5 + """, "Sensor6":""" + dataPoint6 + "}"
 
-print "UDP target IP:", UDP_IP
-print "UDP target port:", UDP_PORT
+print "TCP target IP:", UDP_IP
+print "TCP target port:", UDP_PORT
 print "message:", MESSAGE
 
 sock = socket.socket(socket.AF_INET, # Internet
-             socket.SOCK_DGRAM) # UDP
-sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
-
+             socket.SOCK_STREAM) # UDP
+sock.connect((UDP_IP, UDP_PORT))
+sock.send(MESSAGE)
+sock.close()

@@ -39,8 +39,8 @@ Follow along with the gist [here](https://gist.github.com/ssugar/4162eaa1d638ec6
 ###Bring VM up###
     vagrant up --provider=azure
 	
-###Open UDP Endpoints###
-It looks like the vagrant-azure plugin doesn't let you set UDP endpoints yet.  So log into Azure and add the UDP endpoint for port 5005 to the VM you created.  Or using Azure Powershell:
+###Open UDP Endpoints### - optional
+If you want to transfer over UDP instead of TCP you will need to add in the UDP endpoints manually as it looks like the vagrant-azure plugin doesn't let you set UDP endpoints yet.  So log into Azure and add the UDP endpoint for port 5005 to the VM you created.  Or using Azure Powershell:
 
      $vm = Get-AzureVM -ServiceName sensehcmc -Name sensehcmc
      $vm | Add-AzureEndpoint -Name “sensehcmc” -Protocol udp -LocalPort 5005 -PublicPort 5005
@@ -50,5 +50,5 @@ It looks like the vagrant-azure plugin doesn't let you set UDP endpoints yet.  S
     http://sensehcmc.cloudapp.net/kibana
 
 ###Send Test Data###
-Download the sendData.py file in the root of this project and run it from any machine that has python.  It will resolve sensehcmc.cloudapp.net and then send it a JSON formatted string inside a UDP packet to port 5005 containing 6 random sensor readings.
+Download [sendDataTCP.py](https://raw.githubusercontent.com/ssugar/senseHCMC-Azure/master/sendData.py) from the root of this project and run it from any machine that has python.  It will resolve sensehcmc.cloudapp.net and then send it a JSON formatted string inside a TCP packet to port 5005 containing 6 random sensor readings.
 
